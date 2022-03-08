@@ -11,13 +11,15 @@
             margin: 0;
             padding: 0;
         }
+
         canvas {
             border: 2px solid black;
         }
     </style>
 </head>
 <body>
-    <input id="input-svg" type="file">SVG File</input>
+    <input id="input-svg" type="file" accept=".svg">SVG File</input>
+    <input id="input-background" type="file" accept=".jpg,.png">SVG File</input>
     <input id="input-color" type="hidden"></input>
     <img id="svg-image"></img>
     <canvas id="canvas"></canvas>

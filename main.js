@@ -9,12 +9,13 @@ canvas.setHeight(height);
 // HTML elements
 const elInputImage = document.getElementById('input-svg');
 const elInputColor = document.getElementById('input-color');
+const elInputBackground = document.getElementById('input-background');
 
 const showColorPicker = (visible = true) => {
     elInputColor.type = visible
         ? 'color'
         : 'hidden';
-}
+};
 
 const changeColor = (event) => {
     const color = event.target.value;
@@ -58,15 +59,52 @@ elInputImage.onchange = (event) => {
                 centeredRotation: true,
             });
 
+            const background = canvas.backgroundImage;
+
             canvas.clear()
                 .add(obj)
                 .setActiveObject(obj);
+
+            if (background) {
+                canvas.setBackgroundImage(background);
+            }
 
             showColorPicker();
         });
     };
 
     fileReader.readAsText(event.target.files[0]);
+};
+
+elInputBackground.onchange = (event) => {
+    const fileReader = new FileReader();
+
+    fileReader.onload = (event) => {
+        const image = new Image();
+        image.src = event.target.result;
+
+        image.onload = () => {
+            const img = new fabric.Image(image);
+            img.set({
+                left: canvas.width / 2,
+                top: canvas.height / 2,
+                angle: 0,
+                originX: 'center',
+                originY: 'center',
+            });
+
+            // Fit image to canvas
+            const scale = Math.min(
+                canvas.width / img.width,
+                canvas.height / img.height
+            );
+
+            img.scale(scale);
+            canvas.setBackgroundImage(img);
+        };
+    };
+
+    fileReader.readAsDataURL(event.target.files[0]);
 };
 
 elInputColor.oninput = changeColor;
