@@ -1,7 +1,7 @@
 const canvas = new fabric.Canvas('canvas');
 
 // Canvas with aspect ratio of 16:9
-const width = window.innerWidth * 0.9;
+const width = window.innerWidth * 0.6;
 const height = width * 9 / 16;
 canvas.setWidth(width);
 canvas.setHeight(height);

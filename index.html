@@ -1,28 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="bower_components/fabric.js/dist/fabric.js"></script>
-    <title>Ilya SVG</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="bower_components/fabric.js/dist/fabric.js"></script>
+  <title>Ilya SVG</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
 
-        canvas {
-            border: 2px solid black;
-        }
-    </style>
+    body {
+      background: rgb(42,43,45);
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    canvas {
+      border: 1px solid rgba(179, 182, 188, 0.1);
+      border-radius: 3px;
+    }
+
+    #main {
+      display: flex;
+    }
+
+    #aside {
+      width: 300px;
+      height: 100%;
+      /* background-color: #eee; */
+      padding: 10px;
+    }
+
+    .editor-option {
+      background-color: transparent;
+      border: 1px solid rgba(179, 182, 188, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      margin: 10px;
+      align-items: center;
+      color: white;
+    }
+
+    .editor-option label {
+      display: block;
+      background-color: transparent;
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 10px;
+    }
+  </style>
 </head>
 <body>
-    <input id="input-svg" type="file" accept=".svg">SVG File</input>
-    <input id="input-background" type="file" accept=".jpg,.png">SVG File</input>
-    <input id="input-color" type="hidden"></input>
-    <img id="svg-image"></img>
-    <canvas id="canvas"></canvas>
-    <script src="./main.js"></script>
+  <main id="main">
+    <div>
+      <input id="input-color" type="hidden"></input>
+      <img id="svg-image"></img>
+      <canvas id="canvas"></canvas>
+    </div>
+    <aside id="aside">
+      <div class="editor-option">
+        <input id="input-svg" type="file" accept=".svg" hidden="true">
+        <label for="input-svg">Upload SVG</label>
+      </div>
+      <div class="editor-option">
+        <input id="input-background" type="file" accept=".jpg,.png" hidden="true">
+        <label for="input-background">Background Image</label>
+      </div>
+    </aside>
+  </main>
+  <script src="./main.js"></script>
 </body>
 </html>
